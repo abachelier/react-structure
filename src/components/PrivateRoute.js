@@ -2,14 +2,14 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import useAuth from 'utils/hooks/useAuth'
 
-function PrivateRoute ({ component: Component, ...props }) {
-  const isAuthenticated = useAuth()
+function PrivateRoute({ component: Component, ...props }) {
+  const { authTokens } = useAuth()
 
   return (
     <Route
       {...props}
       render={(props) => (
-        isAuthenticated ? <Component {...props} /> : <Redirect to='/login' />
+        authTokens ? <Component {...props} /> : <Redirect to='/login' />
       )}
     />
   )

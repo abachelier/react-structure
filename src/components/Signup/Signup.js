@@ -4,9 +4,13 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
+import useAuth from 'utils/hooks/useAuth'
+import axios from 'axios'
 
-const Signup = () => {
+const Signup = ({ history }) => {
   const [credentials, setCredentials] = useState({ email: '', password: '', confirmPassword: '' })
+  const [hasError, setHasError] = useState(false)
+  const { setAuthTokens } = useAuth()
 
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget
@@ -15,6 +19,16 @@ const Signup = () => {
 
   const handleSubmit = event => {
     event.preventDefault()
+
+    axios.post('https://reqres.in/api/register', credentials)
+      .then(response => {
+        if (response.status === 200) {
+          setAuthTokens(response.data)
+          history.push('/login')
+        }
+        setHasError(true)
+      })
+      .catch(e => setHasError(true))
   }
 
   return (

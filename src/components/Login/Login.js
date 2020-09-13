@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useAuth from 'utils/hooks/useAuth'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
+import axios from 'axios'
 
-const Login = () => {
+const Login = ({ history }) => {
   const [credentials, setCredentials] = useState({ email: '', password: '' })
+  const [hasError, setHasError] = useState(false)
+  const { setAuthTokens } = useAuth()
 
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget
@@ -15,6 +19,16 @@ const Login = () => {
 
   const handleSubmit = event => {
     event.preventDefault()
+
+    axios.post('https://reqres.in/api/login', credentials)
+      .then(response => {
+        if (response.status === 200) {
+          setAuthTokens(response.data)
+          history.push('/')
+        }
+        setHasError(true)
+      })
+      .catch(e => setHasError(true))
   }
 
   return (
