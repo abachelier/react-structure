@@ -5,6 +5,8 @@ import Login from 'components/Login'
 import PrivateRoute from './PrivateRoute'
 import AuthRoute from './AuthRoute'
 import AuthContext from 'context/AuthContext'
+import Signup from 'components/Signup'
+import './App.scss'
 
 const App = () => {
   return (
@@ -12,6 +14,7 @@ const App = () => {
       <Router>
         <PrivateRoute exact path='/' component={Home} />
         <AuthRoute path='/login' component={Login} />
+        <AuthRoute path='/signup' component={Signup} />
       </Router>
     </AuthContext.Provider>
   )
