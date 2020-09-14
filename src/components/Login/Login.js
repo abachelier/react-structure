@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import useAuth from 'utils/hooks/useAuth'
+import { API_URL } from 'config'
 // Material UI
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -24,7 +25,7 @@ const Login = ({ history }) => {
     event.preventDefault()
     setIsLoading(true)
 
-    axios.post('https://reqres.in/api/login', credentials)
+    axios.post(`${API_URL}/login`, credentials)
       .then(response => {
         if (response.status === 200) {
           setAuthTokens(response.data)

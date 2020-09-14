@@ -1,3 +1,1 @@
-export default {
-  name: 'value'
-}
+export const API_URL = 'https://reqres.in/api'

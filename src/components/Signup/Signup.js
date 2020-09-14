@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { API_URL } from 'config'
 // Material UI
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -23,7 +24,7 @@ const Signup = ({ history }) => {
     setIsLoading(true)
 
     if (credentials.password === credentials.confirmPassword) {
-      axios.post('https://reqres.in/api/register', credentials)
+      axios.post(`${API_URL}/register`, credentials)
         .then(response => history.push('/login'))
         .catch(e => setHasError(true))
     } else {
