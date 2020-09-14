@@ -1,5 +1,5 @@
 import React from 'react'
-import useAuth from 'utils/hooks/useAuth'
+import useAuth from 'hooks/useAuth'
 import Button from '@material-ui/core/Button'
 
 const Home = ({ history }) => {
