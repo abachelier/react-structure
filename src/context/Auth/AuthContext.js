@@ -3,7 +3,7 @@ import AuthReducer from 'context/Auth/AuthReducer'
 import { wsLogin } from 'services/AuthServices'
 
 const initialState = {
-  token: null,
+  token: localStorage.getItem('token'),
   error: null
 }
 

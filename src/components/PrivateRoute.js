@@ -4,7 +4,7 @@ import useAuth from 'hooks/useAuth'
 
 function PrivateRoute ({ component: Component, ...props }) {
   const { authState } = useAuth()
-  
+
   return (
     <Route
       {...props}
