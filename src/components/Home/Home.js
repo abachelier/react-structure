@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useAuth from 'hooks/useAuth'
 import Button from '@material-ui/core/Button'
 
 const Home = ({ history }) => {
-  const { setAuthTokens } = useAuth()
+  const { authState, logout } = useAuth()
 
-  const logout = () => {
-    setAuthTokens()
-    localStorage.removeItem('tokens')
-    history.push('/login')
-  }
+  useEffect(() => {
+    if (!authState.token) {
+      history.push('/login')
+    }
+  }, [authState])
 
   return <>
     <h1>Home Page</h1>

@@ -7,6 +7,9 @@ const AuthReducer = (state, action) => {
       return { ...state, token: action.payload }
     case AuthConstants.LOGIN_FAIL:
       return { ...state, error: action.payload }
+    case AuthConstants.LOGOUT:
+      localStorage.removeItem('token')
+      return { ...state, token: null }
     default:
       throw new Error()
   }
