@@ -8,17 +8,20 @@ import AuthRoute from './AuthRoute'
 import Signup from 'components/Signup'
 
 import { AuthProvider } from 'context/Auth/AuthContext'
+import { UserProvider } from 'context/User/UserContext'
 
 import './App.scss'
 
 const App = () => {
   return (
     <AuthProvider>
-      <Router>
-        <PrivateRoute exact path='/' component={Home} />
-        <AuthRoute path='/login' component={Login} />
-        <AuthRoute path='/signup' component={Signup} />
-      </Router>
+      <UserProvider>
+        <Router>
+          <PrivateRoute exact path='/' component={Home} />
+          <AuthRoute path='/login' component={Login} />
+          <AuthRoute path='/signup' component={Signup} />
+        </Router>
+      </UserProvider>
     </AuthProvider>
   )
 }
