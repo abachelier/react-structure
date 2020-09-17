@@ -1,7 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 import AuthReducer from 'context/Auth/AuthReducer'
-import { wsLogin } from 'services/AuthServices'
-import AuthConstants from 'context/Auth/AuthConstants'
+import { wsLogin, wsLogout } from 'services/AuthServices'
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -16,7 +15,7 @@ const AuthProvider = ({ children }) => {
 
   const actions = {
     login: credentials => wsLogin(credentials, dispatch),
-    logout: () => dispatch({ type: AuthConstants.LOGOUT })
+    logout: () => wsLogout(dispatch)
   }
 
   return <Provider value={{ authState, ...actions }}>{children}</Provider>
